@@ -15,7 +15,7 @@
   <title>{% block title %}X{% endblock title %}</title>
 </head>
 <body class="dark:bg-black dark:text-white text-dark w-10/12 bg-white mx-auto ">
-<div class="flex justify-between grid  grid-cols-[200px_minmax(275px,_1fr)350px] gap-x-5">
+<div class="flex justify-between {% if request.path != '/user/register/' and request.path != '/user/login/' %}grid  grid-cols-[200px_minmax(275px,_1fr)350px]{% endif %} gap-x-5">
     
   {% if request.path != '/user/register/' and request.path != '/user/login/' %}
     {% include "components/_sidebar.html" %}
