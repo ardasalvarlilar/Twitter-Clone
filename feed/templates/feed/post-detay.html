@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}detay{% endblock title %}
+
+{% block posts %}
+  <div class="py-5 px-2 border-x h-full">
+    <h1 class="text-5xl">{{request.user}}</h1>
+    <div class="">
+      <h1 class="text-center text-2xl">{{post.user}}</h1>
+      <h2>{{post.title}}</h2>
+    </div>
+
+    {% if post.image%}
+      <div class="flex flex-col gap-5 justify-center mt-3">
+        <h2>{{post.content}}</h2>
+        <div class="w-8/12 mx-auto">
+          <img src="{{post.image.url}}" alt="" class="w-full">
+        </div>
+        <h3>{{post.posted_at}}</h3>
+      </div>
+      {% else %}
+      <div>
+        <div class="flex flex-col gap-3 justify-center mt-3">
+          <h2>{{post.content}}</h2>
+          <h3 class="text-sm text-zinc-300 mb-4">{{post.posted_at}}</h3>
+        </div>
+        <div>
+          {% if request.user == post.user %}
+            <a href="{% url "post_edit_page" post.slug %}" class="px-4 py-2 rounded-xl bg-slate-600 cursor-pointer hover:bg-slate-500">düzenle</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="flex gap-2 border border-zinc-600 p-4 rounded-md mt-5">
+        <h3>{{request.user}}</h3>
+
+        {{yorum_form.content}}
+      </div>
+      <div class="flex justify-end py-2 px-4">
+        <input type="submit" value="Yanıtla" class="px-4 py-2 rounded-xl bg-slate-600 cursor-pointer hover:bg-slate-500">
+      </div>
+    </form>
+
+    <div class="flex flex-col gap-4">
+      {% for comment in yorumlar %}
+        <a href="{% url "yorum_detay_page" comment.slug %}">
+          <div class="border border-zinc-600 rounded-md p-4">
+            <p>{{ comment.author.username }} - {{ comment.commented_at }}</p>
+            <p>{{ comment.content }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock posts %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %} 
+
+{% block title %}Gündemler{% endblock title %}
+
+{% block posts %}
+
+<div class="w-6/12 border-x px-5 py-4">
+  <div class="flex flex-col gap-5 ">
+    {% for post in posts %}
+     <div class="border border-zinc-400 px-4 py-2 rounded-md">
+      <a href="{% url "post_detay_page" post.slug  %}">
+        {% if post.image %}
+          <div class="flex flex-col gap-3">
+            <h1>{{post.user}}</h1>
+            <h1>{{post.title}}</h1>
+            <p>{{post.content}}</p>
+            <div class="">
+              <img src="{{post.image.url}}" alt="" class="rounded-2xl">
+            </div>
+            <h3 class="text-xs">{{post.posted_at}}</h3>
+          </div>
+        {% else %}
+        <div>
+          <h1>{{post.user}}</h1>
+          <h1>{{post.title}}</h1>
+          <p>{{post.content}}</p>
+          <h3 class="text-xs">{{post.posted_at}}</h3>
+        </div>
+        {% endif %}
+       </a>
+     </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock posts %}

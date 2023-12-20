@@ -1,0 +1,25 @@
+<div class="flex flex-col gap-5">
+  {% for post in posts %}
+   <div class="border border-zinc-400 px-4 py-2 rounded-md">
+    <a href="{% url "post_detay_page" post.slug  %}">
+      {% if post.image %}
+        <div class="flex flex-col gap-3">
+          <h1>{{post.user}}</h1>
+          <p>{{post.content}}</p>
+          <div class="max-w-6/12">
+            <img src="{{post.image.url}}" alt="" class="rounded-2xl w-full">
+          </div>
+          <h3 class="text-xs">{{post.posted_at}}</h3>
+        </div>
+      {% else %}
+      <div>
+        <h1 class="text-md">{{post.user}}</h1>
+        <h1 class="text-xl">{{post.title}}</h1>
+        <p>{{post.content}}</p>
+        <h3 class="text-xs">{{post.posted_at}}</h3>
+      </div>
+      {% endif %}
+     </a>
+   </div>
+  {% endfor %}
+</div>

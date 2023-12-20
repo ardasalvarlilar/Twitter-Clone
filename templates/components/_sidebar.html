@@ -1,0 +1,32 @@
+<aside class="px-5 py-4 flex flex-col justify-between h-screen">
+  <div>
+    <ul class="flex flex-col gap-5 text-xl">
+      <li class="text-4xl font-bold"><a href="{% url "home_page" %}">X</a></li>
+      <li><a href="">Anasayfa</li></a>
+      <li><a href="">Keşfet</li></a>
+      <li><a href="">Bildirimler</li></a>
+      <li><a href="">Mesajlar</li></a>
+      <li><a href="">Listeler</li></a>
+      <li><a href="">Yer İşaretleri</li></a>
+      <li><a href="">Topluluklar</li></a>
+      <li><a href="">Premium</li></a>
+      <li><a href="">Profil</li></a>
+      <li><a href="">Daha fazla</li></a>
+    </ul>
+  </div>
+
+
+  <div class="pb-12">
+    <ul class="flex flex-col gap-5">
+      {% if user.is_authenticated %}
+        <li>{{request.user.username}}</li>
+        <li><a href="{% url "logout_page" %}">çıkış yap</a></li>
+
+      {% else %}
+        <li><a href="{% url "login_page" %}">giriş yap</a></li>
+        <li><a href="{% url "register_page" %}">kayıt ol</a></li>
+
+      {% endif %}
+    </ul>
+  </div>
+</aside>

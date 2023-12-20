@@ -1,0 +1,13 @@
+<div class="px-5 py-4">
+  <h2 class="text-2xl">İlgini çekebilecek gündemler</h2>
+  <ul class="unstyled flex flex-col gap-5 mt-4 bg-[#16181C] rounded-2xl {% if hashtags|length != 0 %}p-3 {% else %} p-0{% endif %} ">
+    {% for hashtag in hashtags %}
+      <li>
+        <a href="{% url "hashtag_detay_page" hashtag.slug %}">
+          <p>#{{ hashtag.title }}</p>
+          {% comment %} <span class="text-zinc-300 text-xs"> {{hashtag.title_count}} posts</span> {% endcomment %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}yorum detay{% endblock title %}
+
+{% block posts %}
+
+<div class="px-5 py-4">
+  <div class="border border-zinc-600 rounded-md p-4">
+      <p>{{yorum.author}}</p>
+      <p>{{yorum.content}}</p>
+      {% if yorum.image %}
+        <img src="{{yorum.image.url}}" alt="">
+      {% else %}
+        <p class="text-sm text-zinc-300 mb-4">{{yorum.commented_at}}</p>
+      {% endif %}
+      {% if request.user == yorum.author %}
+        <a href="{% url "yorum_edit_page" yorum.slug %}" class="px-4 py-2 rounded-xl bg-slate-600 cursor-pointer hover:bg-slate-500">düzenle</a>
+        {% endif %}
+  </div>
+</div>
+
+{% endblock posts %}

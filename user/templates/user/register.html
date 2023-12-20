@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %} 
+
+{% block title %}Kayıt Ol{% endblock title %}
+
+{% block posts %}
+<div class="flex justify-center items-center mx-auto flex-col gap-12 h-screen w-full">
+  <h1 class="text-3xl font-semibold">Hesabını oluştur</h1>
+  <div class="w-1/2">
+    <form method="POST" enctype="multipart/form-data" class="flex flex-col gap-6">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="flex flex-col">
+          <label class="text-xl w-[300px]">{{ field.label }}</label>
+          {{ field }}
+        </div>
+      {% endfor %}
+      <input type="submit" value="Kayıt Ol" class="rounded-md bg-indigo-600 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ">
+      <a href="{% url "login_page" %}" class="rounded-md bg-indigo-600 py-2 text-sm font-semibold text-white text-center shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ">Giriş yap</a>
+    </form>
+  </div>
+</div>
+{% endblock posts %}

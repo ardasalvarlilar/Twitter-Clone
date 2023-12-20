@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}post sil{% endblock title %}
+
+{% block posts %}
+
+<div class="border-x border-white px-5 py-4">
+  <div class="">
+    <h2 class="mb-5">postu sil</h2>
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="flex flex-col gap-4">
+        <h1>{{post.user}}</h1>
+        <h2>{{post.title}}</h2>
+        <p>{{post.content}}</p>
+      </div>
+      
+      <div class="mt-5">
+        <input type="submit" value="Postu sil" class="px-3 py-1 bg-red-600 rounded-xl cursor-pointer">
+        <a href="{% url "post_edit_page" post.slug %}" class="px-3 py-1.5 bg-zinc-600 rounded-xl">geri dön</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock posts %}

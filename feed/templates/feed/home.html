@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}Anasayfa / X{% endblock title %}
+
+
+{% block posts %}
+  <main class="px-5 py-4 border-x">
+    {% include "components/_send-post.html" %}
+    {% include "components/_posts.html" %}
+  </main>
+{% endblock posts %}
